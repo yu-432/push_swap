@@ -6,35 +6,65 @@
 /*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:57:14 by yooshima          #+#    #+#             */
-/*   Updated: 2024/06/21 17:56:21 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:25:08 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+#define STACK_SIZE 10000
+
 typedef struct	s_stack
 {
-	int				content;
-	struct s_stack	*prev;
-	struct s_stack	*next;
+	int stack[STACK_SIZE];
+	int size;
+	int max;
+	int min;
 }				t_stack;
-
-typedef struct	s_data
-{
-	t_stack	*a_head;
-	t_stack *b_head;
-	t_stack *list_last_a;
-	t_stack *list_last_b;
-}				t_data;
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <stdbool.h>
+#include "libft/libft.h"
 
-void	*lst_new(int content);
-void	lstadd_back(t_stack *lst, t_stack *new);
-void	swap_a(t_data *data);
+void	swap_ab(t_stack *stack, char *str);
+void	swap_ss(t_stack *a, t_stack *b);
+void	push_arg1_to_arg2(t_stack *from, t_stack *to, char *str);
+void	rotate_ab(t_stack *stack, char *str);
+void	rotate_rr(t_stack *a, t_stack *b);
+void	reverse_rotate_ab(t_stack *stack, char *str);
+void reverse_rotate_rrr(t_stack *a, t_stack *b);
+
+
+void init_array(int argc, char **argv, t_stack *a, t_stack *b);
+
+bool	is_sorted(t_stack *stack);
+void	sort_three(t_stack *array);
+void sort_six(t_stack *a, t_stack *b);
+void	check_ab(t_stack *a, t_stack *b);
+int find_max(t_stack *stack);
+int find_min(t_stack *stack);
+int find_index(t_stack *stack, int nb);
+void updata_minmax(t_stack *from, t_stack *to, int nb);
+void sort_big(t_stack *a, t_stack *b);
+int find_min_move(t_stack *a, t_stack *b);
+int find_near_nb(t_stack *stack, int find);
+int min_calculator(t_stack *stack, int nb);
+int find_b_pos(t_stack *b, int a_nb);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

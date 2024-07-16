@@ -6,13 +6,13 @@
 #    By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 18:33:57 by yooshima          #+#    #+#              #
-#    Updated: 2024/06/21 16:38:37 by yooshima         ###   ########.fr        #
+#    Updated: 2024/07/15 19:31:02 by yooshima         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= push_swap
 
-SRCS		= list.c main.c operate1.c
+SRCS		= main.c ope1.c ope2.c sort_checker.c sort_six_three.c sort_big.c find_min_cost.c
 
 OBJS		= ${SRCS:.c=.o}
 

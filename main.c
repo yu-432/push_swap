@@ -5,80 +5,58 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 16:29:04 by yooshima          #+#    #+#             */
-/*   Updated: 2024/06/21 18:21:05 by yooshima         ###   ########.fr       */
+/*   Created: 2024/06/22 16:35:53 by yooshima          #+#    #+#             */
+/*   Updated: 2024/07/16 15:53:26 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void init_list(int argc, char **argv, t_data *data)
+int main(int argc, char **argv)
 {
-	t_stack	*new;
+	t_stack a;
+	t_stack b;
+
+	init_array(argc, argv, &a, &b);
+	check_ab(&a, &b);
+	if (argc <= 7)
+		sort_six(&a, &b);
+	else
+		sort_big(&a, &b);
+}
+
+void init_array(int argc, char **argv, t_stack *a, t_stack *b)
+{
 	int	i;
 
 	i = 1;
-	data->a_head = lst_new(atoi(argv[i]));
-	data->list_last_a = data->a_head;
-	i++;
+	a->max = ft_atoi(argv[1]);
+	a->min = ft_atoi(argv[1]);
 	while(i < argc)
 	{
-		new = lst_new(atoi(argv[i]));
-		if (!new)
-			exit(1) ;
-		lstadd_back(data->list_last_a, new);
-		data->list_last_a = new;
+		a->stack[i - 1] = ft_atoi(argv[i]);
+		if (a->max < a->stack[i - 1])
+			a->max = a->stack[i - 1];
+		if (a->min > a->stack[i - 1])
+			a->min = a->stack[i - 1];
 		i++;
 	}
+	a->size = i - 1;
+	b->size = 0;
+	b->max = INT_MIN;
+	b->min = INT_MAX;
+			// printf("a-max = %d, a-min = %d, b-max = %d, b-min = %d\n", a->max, a->min, b->max, b->min);
+
 }
 
-int main(int argc, char **argv)
+void	check_ab(t_stack *a, t_stack *b)
 {
-	t_data data;
-
-	// init list a
-	init_list(argc, argv, &data);
-	
-	printf("stack a %p\n", data.a_head);
-	data.list_last_a = data.a_head;
-	while(1)
-	{
-		printf("%d\n", data.list_last_a->content);
-		if(data.list_last_a->next != data.a_head)
-			data.list_last_a = data.list_last_a->next;
-		else
-			break ;
-	}
-
-
-	
-	swap_a(&data);
-
-
-
-	//check list 
-	printf("stack a %p\n", data.a_head);
-	data.list_last_a = data.a_head;
-	while(1)
-	{
-		printf("%d\n", data.list_last_a->content);
-		if(data.list_last_a->next != data.a_head)
-			data.list_last_a = data.list_last_a->next;
-		else
-			break ;
-	}
-
-	// printf("stack b %p\n", data.b);
-	// data.list_last_b = data.b;
-	// while(1)
-	// {
-	// 	if(data.list_last_b->next != data.b)
-	// 		data.list_last_b = data.list_last_b->next;
-	// 	else
-	// 		break;
-	// 	printf("%d\n", data.list_last_b->content);
-	// }
-	(void)argc;
-	(void)argv;
-
+	printf("-----stack A, size = %d-----\n", a->size);
+	for(int i = 0; i < a->size; i++)
+		printf("%d ", a->stack[i]);
+	printf("\n");
+	printf("-----stack B, size = %d-----\n", b->size);
+	for(int i = 0; i < b->size; i++)
+		printf("%d ", b->stack[i]);
+	printf("\n\n");
 }
