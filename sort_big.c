@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:58:50 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/16 17:24:58 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:48:05 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,64 +65,24 @@ void push_b_phase(t_stack *a, t_stack *b)
 	while(1)
 	{
 		if (a->size < 4)
-			{
-				sort_three(a);
-				break;
-			}
-		if ((b->stack[0] < a->stack[0] && b->stack[b->size-1] > a->stack[0]) ||
-			(a->stack[0] < b->min && b->min == b->stack[b->size-1]) ||
-			(a->stack[0] > b->max && b->max == b->stack[0]))
-			push_arg1_to_arg2(a, b, "pb\n");
-		else
-			{
-				int minNb = 0;
-				minNb = find_min_move(a, b);
-				int index = find_index(a, minNb);
-				while(a->stack[0] != minNb)
-				{
-					if (index < a->size/2)
-						rotate_ab(a, "ra\n");
-					else
-						reverse_rotate_ab(a, "rra\n");
-				}
-				minNb = find_b_pos(b, minNb);
-				push_arg1_to_arg2(a, b, "pb\n");
-			}
+			break;
+		int minNb = 0;
+		minNb = find_min_move(a, b);
+		int index = find_index(a, minNb);
+		while(a->stack[0] != minNb)
+		{
+			if (index < a->size/2)
+				rotate_ab(a, "ra\n");
+			else
+				reverse_rotate_ab(a, "rra\n");
+		}
+		minNb = find_b_pos(b, minNb);
+		push_arg1_to_arg2(a, b, "pb\n");
 	}
 }
 
-void sort_big(t_stack *a, t_stack *b)
+void push_a_phase(t_stack *a, t_stack *b)
 {
-	push_arg1_to_arg2(a, b, "pb\n");
-	push_arg1_to_arg2(a, b, "pb\n");
-	push_b_phase(a, b);
-	// while(1)
-	// {
-	// 	if (a->size < 4)
-	// 		{
-	// 			sort_three(a);
-	// 			break;
-	// 		}
-	// 	if ((b->stack[0] < a->stack[0] && b->stack[b->size-1] > a->stack[0]) ||
-	// 		(a->stack[0] < b->min && b->min == b->stack[b->size-1]) ||
-	// 		(a->stack[0] > b->max && b->max == b->stack[0]))
-	// 		push_arg1_to_arg2(a, b, "pb\n");
-	// 	else
-	// 		{
-	// 			int minNb = 0;
-	// 			minNb = find_min_move(a, b);
-	// 			int index = find_index(a, minNb);
-	// 			while(a->stack[0] != minNb)
-	// 			{
-	// 				if (index < a->size/2)
-	// 					rotate_ab(a, "ra\n");
-	// 				else
-	// 					reverse_rotate_ab(a, "rra\n");
-	// 			}
-	// 			minNb = find_b_pos(b, minNb);
-	// 			push_arg1_to_arg2(a, b, "pb\n");
-	// 		}
-	// }
 	while(b->size != 0)
 	{
 		if ((a->stack[0] > b->stack[0] && a->stack[a->size-1] < b->stack[0]) ||
@@ -139,5 +99,14 @@ void sort_big(t_stack *a, t_stack *b)
 		else
 			reverse_rotate_ab(a, "rra\n");
 	}
+}
+
+void sort_big(t_stack *a, t_stack *b)
+{
+	push_arg1_to_arg2(a, b, "pb\n");
+	push_arg1_to_arg2(a, b, "pb\n");
+	push_b_phase(a, b);
+	sort_three(a);
+	push_a_phase(a, b);
 	check_ab(a, b);
 }
