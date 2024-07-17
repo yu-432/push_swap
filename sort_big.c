@@ -6,53 +6,122 @@
 /*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:58:50 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/16 18:48:05 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:44:32 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 //ARG=(`ruby -e 'print (1..100).to_a.shuffle * " "'`); echo $ARG; ./push_swap $ARG | wc -l
 
-int find_b_pos(t_stack *b, int a_nb)
+
+
+		// while(a->stack[0] != minNb)
+		// {
+		// 	if (nb_index < a->size/2)
+		// 		rotate_ab(a, "ra\n");
+		// 	else
+		// 		reverse_rotate_ab(a, "rra\n");
+		// }
+		
+
+int rotate_stack(t_stack *a, t_stack *b, int a_index, int a_nb)
 {
+	int b_index;
+
+	// printf("aindex = %d, a_nb = %d\n", a_index, a_nb);
 	if (a_nb < b->min)
 	{
+		b_index = find_index(b, b->min);
+		while (b->min != b->stack[b->size-1] && a->stack[0] != a_nb)
+		{
+			// printf("min 1\n");
+			if (b_index < b->size/2 && a_index < a->size/2)
+				rotate_rr(a, b);
+			else if (b_index >= b->size/2 && a_index >= a->size/2)
+				reverse_rotate_rrr(a, b);
+			else
+				break;
+		}
 		while (b->min != b->stack[b->size-1])
 		{
-			if (find_index(b,a_nb) < b->size/2)
+
+			if (b_index < b->size/2)
 				rotate_ab(b, "rb\n");
 			else
 				reverse_rotate_ab(b, "rrb\n");
+		}
+		while(a->stack[0] != a_nb)
+		{
+			if (a_index < a->size/2)
+				rotate_ab(a, "ra\n");
+			else
+				reverse_rotate_ab(a, "rra\n");
 		}
 		return b->min;
 	}
-	else if (a_nb > b->max)
+
+	if (a_nb > b->max)
 	{
+			// printf("max-------------------------\n");
+
+		b_index = find_index(b, b->max);
+		while (b->max != b->stack[0] && a->stack[0] != a_nb)
+		{
+			if (b_index < b->size/2 && a_index < a->size/2)
+				rotate_rr(a, b);
+			else if (b_index >= b->size/2 && a_index >= a->size/2)
+				reverse_rotate_rrr(a, b);
+			else
+				break;
+		}
 		while (b->max != b->stack[0])
 		{
-			if (find_index(b,a_nb) < b->size/2)
+			if (b_index < b->size/2)
 				rotate_ab(b, "rb\n");
 			else
 				reverse_rotate_ab(b, "rrb\n");
 		}
-		return b->max;
+		while(a->stack[0] != a_nb)
+		{
+			if (a_index < a->size/2)
+				rotate_ab(a, "ra\n");
+			else
+				reverse_rotate_ab(a, "rra\n");
+		}
+		return 1;
 	}
-	
 	int i = 0;
 	while (i < b->size)
 	{
-		if (b->stack[i%b->size] > a_nb && b->stack[(i + 1)%b->size] < a_nb)
+		if (b->stack[i%b->size] > a_nb && b->stack[(i + 1)%b->size] < a_nb)//スタックAからプッシュされる数字の正しい挿入位置を求める。求めた後にその位置まで移動する。
 		{
-			// printf("oya %d, ko %d\n", b->stack[i%b->size], b->stack[(i+ 1)%b->size]);
+			// printf("else-------------------------\n");
 			int nb = b->stack[i];
+			b_index = find_index(b, nb);
+			while (b->stack[b->size-1] != nb && a->stack[0] != a_nb)//移動ループ
+			{
+				if (b_index < b->size/2 && a_index < a->size/2)
+					rotate_rr(a, b);
+				else if(b_index >= b->size/2 && a_index >= a->size/2)
+					reverse_rotate_rrr(a, b);
+				else
+					break;
+			}
 			while (b->stack[b->size-1] != nb)
 			{
-				if (find_index(b,nb) < b->size/2)
+				if (b_index < b->size/2)
 					rotate_ab(b, "rb\n");
 				else
 					reverse_rotate_ab(b, "rrb\n");
 			}
-			return b->stack[i];
+			while (a->stack[0] != a_nb)
+			{
+				if (a_index < a->size/2)
+					rotate_ab(a, "ra\n");
+				else
+					reverse_rotate_ab(a, "rra\n");
+			}
+			return 1;
 		}
 		i++;
 	}
@@ -62,21 +131,16 @@ int find_b_pos(t_stack *b, int a_nb)
 
 void push_b_phase(t_stack *a, t_stack *b)
 {
+	int l_cost_nb_a;
+	int nb_index;
+
 	while(1)
 	{
 		if (a->size < 4)
 			break;
-		int minNb = 0;
-		minNb = find_min_move(a, b);
-		int index = find_index(a, minNb);
-		while(a->stack[0] != minNb)
-		{
-			if (index < a->size/2)
-				rotate_ab(a, "ra\n");
-			else
-				reverse_rotate_ab(a, "rra\n");
-		}
-		minNb = find_b_pos(b, minNb);
+		l_cost_nb_a = find_min_move(a, b);
+		nb_index = find_index(a, l_cost_nb_a);
+		rotate_stack(a, b, nb_index, l_cost_nb_a);
 		push_arg1_to_arg2(a, b, "pb\n");
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 13:22:54 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/15 19:24:52 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/17 13:49:13 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int find_near_nb(t_stack *stack, int find)
 	i = 0;
 	while(i < stack->size - 1)
 	{
-		if (stack->stack[i] > find && stack->stack[i+1] < find)
+		if (find == stack->stack[i] || (stack->stack[i] > find && stack->stack[i+1] < find))
 			return stack->stack[i];
 		i++;
 	}
