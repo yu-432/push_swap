@@ -6,12 +6,11 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:58:50 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 13:02:03 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:47:23 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//ARG=(`ruby -e 'print (1..100).to_a.shuffle * " "'`); echo $ARG; ./push_swap $ARG | wc -l
 
 void	set_a_head(t_stack *a, int set_nb)
 {
@@ -64,47 +63,37 @@ void	rotate_stack(t_stack *a, t_stack *b, int a_nb)
 	int	i;
 	int	b_nb;
 
-	if (a_nb < b->min)
+	if (a_nb < b->min || a_nb > b->max)
 	{
 		both_rotate(a, b, b->min, a_nb);
 		set_b_tail(b, b->min);
 		set_a_head(a, a_nb);
+		return ;
 	}
-	else if (a_nb > b->max)
+	i = 0;
+	while (i < b->size)
 	{
-		both_rotate(a, b, b->min, a_nb);
-		set_b_tail(b, b->min);
-		set_a_head(a, a_nb);
-	}
-	else
-	{
-		i = 0;
-		while (i < b->size)
+		if (b->stack[i] > a_nb && b->stack[(i + 1) % b->size] < a_nb)
 		{
-			if (b->stack[i] > a_nb && b->stack[(i + 1)%b->size] < a_nb)
-			{
-				b_nb = b->stack[i];
-				both_rotate(a, b, b_nb, a_nb);
-				set_b_tail(b, b_nb);
-				set_a_head(a, a_nb);
-				break ;
-			}
-			i++;
+			b_nb = b->stack[i];
+			both_rotate(a, b, b_nb, a_nb);
+			set_b_tail(b, b_nb);
+			set_a_head(a, a_nb);
+			break ;
 		}
+		i++;
 	}
 }
 
 void	push_b_phase(t_stack *a, t_stack *b)
 {
 	int	l_cost_nb_a;
-	int	anb_index;
 
 	while (1)
 	{
 		if (a->size < 4)
 			break ;
 		l_cost_nb_a = find_min_move(a, b);
-		anb_index = find_index(a, l_cost_nb_a);
 		rotate_stack(a, b, l_cost_nb_a);
 		push_arg1_to_arg2(a, b, "pb\n");
 	}
@@ -114,23 +103,23 @@ void	push_a_phase(t_stack *a, t_stack *b)
 {
 	while (b->size != 0)
 	{
-		if ((a->stack[0] > b->stack[0] && a->stack[a->size-1] < b->stack[0]) ||
-			(b->stack[0] < a->min && a->min == a->stack[0]) ||
-			(b->stack[0] > a->max && a->max == a->stack[a->size-1]))
+		if ((a->stack[0] > b->stack[0] && a->stack[a->size - 1] < b->stack[0])
+			|| (b->stack[0] < a->min && a->min == a->stack[0])
+			|| (b->stack[0] > a->max && a->max == a->stack[a->size - 1]))
 			push_arg1_to_arg2(b, a, "pa\n");
 		else
 			reverse_rotate_ab(a, "rra\n");
 	}
-	while(!is_sorted(a))
+	while (!is_sorted(a))
 	{
-		if(find_index(a, a->min) < a->size / 2)
+		if (find_index(a, a->min) < a->size / 2)
 			rotate_ab(a, "ra\n");
 		else
 			reverse_rotate_ab(a, "rra\n");
 	}
 }
 
-void sort_big(t_stack *a, t_stack *b)
+void	sort_big(t_stack *a, t_stack *b)
 {
 	push_arg1_to_arg2(a, b, "pb\n");
 	push_arg1_to_arg2(a, b, "pb\n");

@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 16:10:26 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 13:07:09 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:39:08 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	swap_ab(t_stack *stack, char *str)
 {
-	int temp;
+	int	temp;
 
 	temp = stack->stack[0];
 	stack->stack[0] = stack->stack[1];

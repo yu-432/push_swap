@@ -6,11 +6,13 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:35:53 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 13:14:44 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:46:34 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+//ARG=(`ruby -e 'print (1..100).to_a.shuffle * " "'`); echo $ARG; ./push_swap $ARG | wc -l
 
 int	main(int argc, char **argv)
 {
@@ -18,8 +20,8 @@ int	main(int argc, char **argv)
 	t_stack	b;
 
 	init_array(argc, argv, &a, &b);
-	if (argc <= 7)
-		sort_six(&a, &b);
+	if (argc <= 4)
+		sort_three(&a);
 	else
 		sort_big(&a, &b);
 }

@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:08:41 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 13:17:51 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:36:21 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	min_calculator(t_stack *stack, int nb)
 		}
 		i++;
 	}
-	return (-1); //???????????
+	return (0); //???????????
 }
 
 
