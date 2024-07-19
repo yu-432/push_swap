@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:35:53 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 20:37:56 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 23:10:10 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,30 @@ int	main(int argc, char **argv)
 	t_stack	a;
 	t_stack	b;
 
-
-	init_stack(&a, &b, count_arg(argv));
-	read_arg(argc, argv, &a);
-	if (is_sorted(&a))
+	if (argc <= 2)
 		return (0);
+	init_stack(&a, &b, count_word(argv));
+	read_arg(argc, argv, &a);
 	if (a.size < 4)
 		sort_three(&a);
 	else
 		sort_big(&a, &b);
+	free(a.stack);
+	free(b.stack);
+	return (0);
 }
 
-int	count_arg(char **argv)
+int	count_word(char **argv)
 {
 	int	i;
 	int	j;
 	int	count;
 
 	i = 1;
-	j = 0;
 	count = 0;
 	while (argv[i])
 	{
+		j = 0;
 		while (argv[i][j])
 		{
 			if (argv[i][j] == ' ')
@@ -58,13 +60,19 @@ void	init_stack(t_stack *a, t_stack *b, int size)
 {
 	a->stack = malloc(size * sizeof(int));
 	if (!a->stack)
+	{
+		ft_putstr_fd("Error\n", 2);
 		exit(1);
+	}
 	a->size = 0;
 	a->max = INT_MIN;
 	a->min = INT_MAX;
 	b->stack = malloc(size * sizeof(int));
 	if (!b->stack)
+	{
+		ft_putstr_fd("Error\n", 2);
 		exit(1);
+	}
 	b->size = 0;
 	b->max = INT_MIN;
 	b->min = INT_MAX;
@@ -87,13 +95,13 @@ void	read_arg(int argc, char **argv, t_stack *a)
 		{
 			if (add_to_stack(a, nbs[index], a->size) == -1)
 			{
-				all_free(nbs, word_count(nbs));
+				all_free(nbs);
 				exit(1);
 			}
 			index++;
 			a->size++;
 		}
-		all_free(nbs, index);
+		all_free(nbs);
 		i++;
 	}
 }
@@ -113,15 +121,21 @@ int	add_to_stack(t_stack *a, char *word, int j)
 	return (0);
 }
 
-void	all_free(char **result, int index)
+void	all_free(char **result)
 {
-	while (index--)
-		free(result[index]);
+	int	i;
+
+	i = 0;
+	while (result[i])
+	{
+		free(result[i]);
+		i++;
+	}
 	free(result);
 	return ;
 }
 
-// __attribute__((destructor))
-// static void destructor() {
-//     system("leaks -q push_swap");
-// }
+__attribute__((destructor))
+static void destructor() {
+    system("leaks -q push_swap");
+}
