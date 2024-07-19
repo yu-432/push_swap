@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:35:53 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 20:07:56 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:37:56 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	main(int argc, char **argv)
 	t_stack	a;
 	t_stack	b;
 
-	init_stack(&a, &b);
+
+	init_stack(&a, &b, count_arg(argv));
 	read_arg(argc, argv, &a);
 	if (is_sorted(&a))
 		return (0);
@@ -30,11 +31,40 @@ int	main(int argc, char **argv)
 		sort_big(&a, &b);
 }
 
-void	init_stack(t_stack *a, t_stack *b)
+int	count_arg(char **argv)
 {
+	int	i;
+	int	j;
+	int	count;
+
+	i = 1;
+	j = 0;
+	count = 0;
+	while (argv[i])
+	{
+		while (argv[i][j])
+		{
+			if (argv[i][j] == ' ')
+				count++;
+			j++;
+		}
+		i++;
+		count++;
+	}
+	return (count);
+}
+
+void	init_stack(t_stack *a, t_stack *b, int size)
+{
+	a->stack = malloc(size * sizeof(int));
+	if (!a->stack)
+		exit(1);
 	a->size = 0;
 	a->max = INT_MIN;
 	a->min = INT_MAX;
+	b->stack = malloc(size * sizeof(int));
+	if (!b->stack)
+		exit(1);
 	b->size = 0;
 	b->max = INT_MIN;
 	b->min = INT_MAX;
@@ -80,7 +110,7 @@ int	add_to_stack(t_stack *a, char *word, int j)
 		a->max = a->stack[j];
 	if (a->min > a->stack[j])
 		a->min = a->stack[j];
-	return (1);
+	return (0);
 }
 
 void	all_free(char **result, int index)

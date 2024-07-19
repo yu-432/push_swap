@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:57:14 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 20:04:03 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:28:43 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,14 @@ void	set_both_rotate(t_stack *a, t_stack *b, int b_nb, int a_nb);
 void push_a_phase(t_stack *a, t_stack *b);
 void	push_b_phase(t_stack *a, t_stack *b);
 void	set_stack(t_stack *a, t_stack *b, int a_nb);
-void	init_stack(t_stack *a, t_stack *b);
+void	init_stack(t_stack *a, t_stack *b, int size);
 int	word_count(char **words);
 bool	is_digit_str(char *str);
 void	all_free(char **result, int index);
 int	ps_atoi(const char *str);
 int	add_to_stack(t_stack *a, char *word, int j);
+int count_arg(char **argv);
+
 
 
 
