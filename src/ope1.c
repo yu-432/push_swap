@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 16:10:26 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 15:12:50 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 19:25:51 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,3 @@ void	updata_minmax(t_stack *from, t_stack *to, int nb)
 	if (to->min > nb)
 		to->min = nb;
 }
-

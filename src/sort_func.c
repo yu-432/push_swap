@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_big.c                                         :+:      :+:    :+:   */
+/*   sort_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:58:50 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 17:37:17 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 19:26:31 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	sort_three(t_stack *stack)
 {
 	if (is_sorted(stack))
 		return ;
-	if (stack->stack[0] < stack->stack[1])
+	if (stack->size == 2)
+		swap_ab(stack, "sa\n");
+	else if (stack->stack[0] < stack->stack[1])
 	{
 		reverse_rotate_ab(stack, "rra\n");
 		if (!is_sorted(stack))
@@ -63,7 +65,6 @@ void	push_a_phase(t_stack *a, t_stack *b)
 			push_arg1_to_arg2(b, a, "pa\n");
 		else
 			reverse_rotate_ab(a, "rra\n");
-
 	}
 	min_index = find_index(a, a->min);
 	while (!is_sorted(a))
@@ -100,4 +101,18 @@ void	set_stack(t_stack *a, t_stack *b, int a_nb)
 		}
 		i++;
 	}
+}
+
+bool	is_sorted(t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack->size - 1)
+	{
+		if (stack->stack[i] > stack->stack[i + 1])
+			return (false);
+		i++;
+	}
+	return (true);
 }
