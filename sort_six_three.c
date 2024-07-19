@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:24:01 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/18 14:36:31 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:14:01 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,22 @@ void sort_three(t_stack *stack)
 	}
 }
 
-void sort_six(t_stack *a, t_stack *b)
+void	sort_six(t_stack *a, t_stack *b)
 {
-	int min;
-	int max;
-	
 	if (a->size < 4)
 		return (sort_three(a));
-	while(a->size != 3)
+	while (a->size != 3)
 		push_arg1_to_arg2(a, b, "pb\n");
 	sort_three(a);
-	min = find_min(a);
-	max = find_max(a);
-		while(b->size != 0)
+	while (b->size != 0)
 	{
-		if ((a->stack[0] > b->stack[0] && a->stack[a->size-1] < b->stack[0]) ||
-			(b->stack[0] < a->min && a->min == a->stack[0]) ||
-			(b->stack[0] > a->max && a->max == a->stack[a->size-1]))
+		if ((a->stack[0] > b->stack[0] && a->stack[a->size - 1] < b->stack[0])
+			|| (b->stack[0] < a->min && a->min == a->stack[0])
+			|| (b->stack[0] > a->max && a->max == a->stack[a->size - 1]))
 			push_arg1_to_arg2(b, a, "pa\n");
 		else
 			reverse_rotate_ab(a, "rra\n");
 	}
-	while(!is_sorted(a))
+	while (!is_sorted(a))
 		rotate_ab(a, "ra\n");
 }

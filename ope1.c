@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ope1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 16:10:26 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/14 19:44:27 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:07:09 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// swap stack[0] <-> stack[1]
 void	swap_ab(t_stack *stack, char *str)
 {
 	int temp;
@@ -31,23 +30,22 @@ void	swap_ss(t_stack *a, t_stack *b)
 	ft_putstr_fd("ss\n", 1);
 }
 
-// push arg1stack[0] add arg2stack
 void	push_arg1_to_arg2(t_stack *from, t_stack *to, char *str)
 {
-	int temp;
-	int i;
+	int	temp;
+	int	i;
 
 	if (from->size == 0)
-		return;
+		return ;
 	temp = from->stack[0];
 	i = 0;
-	while(i < from->size)
+	while (i < from->size)
 	{
 		from->stack[i] = from->stack[i + 1];
 		i++;
 	}
 	i = to->size;
-	while(i)
+	while (i)
 	{
 		to->stack[i] = to->stack[i - 1];
 		i--;
@@ -56,11 +54,10 @@ void	push_arg1_to_arg2(t_stack *from, t_stack *to, char *str)
 	to->size += 1;
 	from->size -= 1;
 	updata_minmax(from, to, temp);
-	if (str != NULL)
-		ft_putstr_fd(str, 1);
+	ft_putstr_fd(str, 1);
 }
 
-void updata_minmax(t_stack *from, t_stack *to, int nb)
+void	updata_minmax(t_stack *from, t_stack *to, int nb)
 {
 	if (from->max == nb)
 		from->max = find_max(from);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:57:14 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/17 13:28:49 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 12:41:02 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void sort_big(t_stack *a, t_stack *b);
 int find_min_move(t_stack *a, t_stack *b);
 int find_near_nb(t_stack *stack, int find);
 int min_calculator(t_stack *stack, int nb);
-int rotate_stack(t_stack *a, t_stack *b, int nb_index, int a_nb);
+void rotate_stack(t_stack *a, t_stack *b, int a_nb);
 
 void push_a_phase(t_stack *a, t_stack *b);
 
