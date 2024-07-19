@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:35:53 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/16 15:53:26 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:26:52 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 	t_stack b;
 
 	init_array(argc, argv, &a, &b);
-	check_ab(&a, &b);
+	// check_ab(&a, &b);
 	if (argc <= 7)
 		sort_six(&a, &b);
 	else

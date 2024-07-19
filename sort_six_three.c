@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   less_seven.c                                       :+:      :+:    :+:   */
+/*   sort_six_three.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:24:01 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/14 16:56:46 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:36:31 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,15 @@ void sort_six(t_stack *a, t_stack *b)
 	sort_three(a);
 	min = find_min(a);
 	max = find_max(a);
-	while(!is_sorted(a) || b->size != 0)
+		while(b->size != 0)
 	{
-		if ((max == a->stack[a->size-1] && max < b->stack[0]) ||
-			(min == a->stack[0] && a->stack[0] > b->stack[0]) ||
-			(a->stack[0] > b->stack[0] && a->stack[a->size-1] < b->stack[0]))
-			{
-				if (b->stack[0] > max)
-					max = b->stack[0];
-				else if (b->stack[0] < min)
-					min = b->stack[0];
-				push_arg1_to_arg2(b, a, "pa\n");
-			}
+		if ((a->stack[0] > b->stack[0] && a->stack[a->size-1] < b->stack[0]) ||
+			(b->stack[0] < a->min && a->min == a->stack[0]) ||
+			(b->stack[0] > a->max && a->max == a->stack[a->size-1]))
+			push_arg1_to_arg2(b, a, "pa\n");
 		else
-			rotate_ab(a, "ra\n");
+			reverse_rotate_ab(a, "rra\n");
 	}
+	while(!is_sorted(a))
+		rotate_ab(a, "ra\n");
 }
