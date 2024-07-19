@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_checker.c                                     :+:      :+:    :+:   */
+/*   find_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 13:22:54 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 13:38:20 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:04:19 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-bool	is_sorted(t_stack *stack)
-{
-	int	i;
-
-	i = 0;
-	while (i < stack->size - 1)
-	{
-		if (stack->stack[i] > stack->stack[i + 1])
-			return (false);
-		i++;
-	}
-	return (true);
-}
 
 int	find_max(t_stack *stack)
 {
@@ -70,4 +56,53 @@ int	find_index(t_stack *stack, int nb)
 		i++;
 	}
 	exit(1);
+}
+
+//add times to move stack_a ,stack_b
+//return most lowcost number
+int	find_lcost_nb(t_stack *a, t_stack *b)
+{
+	int	curr_cost;
+	int	min_cost;
+	int	nb;
+	int	i;
+
+	i = 0;
+	min_cost = INT_MAX;
+	while (i < a->size - 1)
+	{
+		curr_cost = find_pos_b(b, a->stack[i]);
+		if (i > a->size / 2)
+			curr_cost += a->size - i;
+		else
+			curr_cost += i;
+		if (min_cost > curr_cost)
+		{
+			min_cost = curr_cost;
+			nb = a->stack[i];
+		}
+		i++;
+	}
+	return (nb);
+}
+
+//find the nunber of times to move to the correct position in the stack_b
+int	find_pos_b(t_stack *stack_b, int nb)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack_b->size)
+	{
+		if (stack_b->stack[i % stack_b->size] > nb
+			&& stack_b->stack[(i + 1) % stack_b->size] < nb)
+		{
+			if (i > stack_b->size / 2)
+				return (stack_b->size - i);
+			else
+				return (i);
+		}
+		i++;
+	}
+	return (0);
 }

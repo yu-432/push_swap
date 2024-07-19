@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:35:53 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 13:46:34 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:16:17 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,18 @@ void	init_array(int argc, char **argv, t_stack *a, t_stack *b)
 	b->size = 0;
 	b->max = INT_MIN;
 	b->min = INT_MAX;
+}
+
+bool	is_sorted(t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack->size - 1)
+	{
+		if (stack->stack[i] > stack->stack[i + 1])
+			return (false);
+		i++;
+	}
+	return (true);
 }
