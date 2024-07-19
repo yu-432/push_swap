@@ -6,13 +6,13 @@
 #    By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 18:33:57 by yooshima          #+#    #+#              #
-#    Updated: 2024/07/19 14:49:00 by yooshima         ###   ########.fr        #
+#    Updated: 2024/07/19 16:59:12 by yooshima         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= push_swap
 
-SRCS		= main.c ope1.c ope2.c sort_three.c sort_big.c set_func.c find_func.c
+SRCS		= $(wildcard src/*.c)
 
 OBJS		= ${SRCS:.c=.o}
 

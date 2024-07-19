@@ -6,11 +6,35 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:58:50 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 15:01:01 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:37:17 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
+
+void	sort_three(t_stack *stack)
+{
+	if (is_sorted(stack))
+		return ;
+	if (stack->stack[0] < stack->stack[1])
+	{
+		reverse_rotate_ab(stack, "rra\n");
+		if (!is_sorted(stack))
+			swap_ab(stack, "sa\n");
+	}
+	else if (stack->stack[1] < stack->stack[2])
+	{
+		if (stack->stack[0] < stack->stack[2])
+			swap_ab(stack, "sa\n");
+		else
+			rotate_ab(stack, "ra\n");
+	}
+	else
+	{
+		rotate_ab(stack, "ra\n");
+		swap_ab(stack, "sa\n");
+	}
+}
 
 void	sort_big(t_stack *a, t_stack *b)
 {
@@ -39,6 +63,7 @@ void	push_a_phase(t_stack *a, t_stack *b)
 			push_arg1_to_arg2(b, a, "pa\n");
 		else
 			reverse_rotate_ab(a, "rra\n");
+
 	}
 	min_index = find_index(a, a->min);
 	while (!is_sorted(a))

@@ -6,11 +6,11 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 16:10:26 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 13:39:08 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:12:50 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	swap_ab(t_stack *stack, char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:09:17 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 14:28:14 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:12:54 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	set_a_head(t_stack *a, int set_nb)
 {

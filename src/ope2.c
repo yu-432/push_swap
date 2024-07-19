@@ -6,11 +6,11 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 14:27:08 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 13:07:02 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:12:52 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	rotate_ab(t_stack *stack, char *str)
 {

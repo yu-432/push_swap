@@ -6,11 +6,11 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 13:22:54 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 15:04:19 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:12:46 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	find_max(t_stack *stack)
 {
