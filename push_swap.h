@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:57:14 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/20 18:14:05 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/20 18:27:25 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ bool	is_digit_str(char *str);
 int		ps_atoi(const char *str);
 int		count_word(char **argv);
 void	all_free(char **result);
+void	err_exit(void);
 
 #endif

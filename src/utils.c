@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 18:33:55 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/20 18:13:27 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/20 18:27:17 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,10 @@ void	all_free(char **result)
 		i++;
 	}
 	free(result);
+}
+
+void	err_exit(void)
+{
+	ft_putstr_fd("Error\n", 2);
+	exit(1);
 }

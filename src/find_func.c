@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 13:22:54 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 19:24:49 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/20 18:28:32 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ int	find_index(t_stack *stack, int nb)
 	while (stack->size > i)
 	{
 		if (stack->stack[i] == nb)
-			return (i);
+			break;
 		i++;
 	}
-	exit(1);
+	return (i);
 }
 
 //add times to move stack_a ,stack_b

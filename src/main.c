@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:35:53 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/20 18:12:07 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/20 18:29:48 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,13 @@ void	init_stack(t_stack *a, t_stack *b, int size)
 {
 	a->stack = malloc(size * sizeof(int));
 	if (!a->stack)
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit(1);
-	}
+		err_exit();
 	a->size = 0;
 	a->max = INT_MIN;
 	a->min = INT_MAX;
 	b->stack = malloc(size * sizeof(int));
 	if (!b->stack)
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit(1);
-	}
+		err_exit();
 	b->size = 0;
 	b->max = INT_MIN;
 	b->min = INT_MAX;
@@ -67,13 +61,13 @@ void	read_arg(int argc, char **argv, t_stack *a)
 		index = 0;
 		nbs = ft_split(argv[i], ' ');
 		if (!nbs)
-			exit(1);
+			err_exit();
 		while (nbs[index])
 		{
 			if (add_to_stack(a, nbs[index], a->size) == -1)
 			{
 				all_free(nbs);
-				exit(1);
+				err_exit();
 			}
 			index++;
 			a->size++;
@@ -86,10 +80,7 @@ void	read_arg(int argc, char **argv, t_stack *a)
 int	add_to_stack(t_stack *a, char *word, int j)
 {
 	if (!is_digit_str(word))
-	{
-		ft_putstr_fd("Error\n", 2);
 		return (-1);
-	}
 	a->stack[j] = ps_atoi(word);
 	if (a->max < a->stack[j])
 		a->max = a->stack[j];
