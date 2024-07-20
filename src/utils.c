@@ -3,35 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 18:33:55 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 20:02:09 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/20 17:30:52 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-static long	long_overflow(int sign, const char *str)
-{
-	long	temp;
-	long	value;
-
-	value = 0;
-	while (ft_isdigit(*str))
-	{
-		temp = value * 10 + *str - '0';
-		if ((sign == 1 && !(temp >= value)) || (sign == -1 && !(temp >= value))
-			|| temp > INT_MAX || temp < INT_MIN)
-		{
-			ft_putstr_fd("Error\n", 2);
-			exit(1);
-		}
-		value = temp;
-		str++;
-	}
-	return (value);
-}
 
 int	ps_atoi(const char *str)
 {
@@ -44,7 +23,16 @@ int	ps_atoi(const char *str)
 		sign = -1;
 	if (*str == '-' || *str == '+')
 		str++;
-	value = long_overflow(sign, str);
+	while (*str)
+	{
+		value = value * 10 + *str - '0';
+		if ((sign == 1 && value > INT_MAX) || (sign == -1 && value - 1 > INT_MAX))
+		{
+			ft_putstr_fd("Error\n", 2);
+			exit(1);
+		}
+		str++;
+	}
 	return ((int)(value * sign));
 }
 
@@ -61,15 +49,38 @@ bool	is_digit_str(char *str)
 	return (true);
 }
 
-int	word_count(char **words)
+int	count_word(char **argv)
 {
+	int	i;
+	int	j;
 	int	count;
 
+	i = 1;
 	count = 0;
-	while (*words)
+	while (argv[i])
 	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] == ' ')
+				count++;
+			j++;
+		}
+		i++;
 		count++;
-		words++;
 	}
 	return (count);
+}
+
+void	all_free(char **result)
+{
+	int	i;
+
+	i = 0;
+	while (result[i])
+	{
+		free(result[i]);
+		i++;
+	}
+	free(result);
 }

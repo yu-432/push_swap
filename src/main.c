@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:35:53 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/19 23:10:10 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/20 17:31:04 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	t_stack	a;
 	t_stack	b;
 
-	if (argc <= 2)
+	if (argc <= 1)
 		return (0);
 	init_stack(&a, &b, count_word(argv));
 	read_arg(argc, argv, &a);
@@ -31,29 +31,6 @@ int	main(int argc, char **argv)
 	free(a.stack);
 	free(b.stack);
 	return (0);
-}
-
-int	count_word(char **argv)
-{
-	int	i;
-	int	j;
-	int	count;
-
-	i = 1;
-	count = 0;
-	while (argv[i])
-	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if (argv[i][j] == ' ')
-				count++;
-			j++;
-		}
-		i++;
-		count++;
-	}
-	return (count);
 }
 
 void	init_stack(t_stack *a, t_stack *b, int size)
@@ -121,19 +98,7 @@ int	add_to_stack(t_stack *a, char *word, int j)
 	return (0);
 }
 
-void	all_free(char **result)
-{
-	int	i;
 
-	i = 0;
-	while (result[i])
-	{
-		free(result[i]);
-		i++;
-	}
-	free(result);
-	return ;
-}
 
 __attribute__((destructor))
 static void destructor() {
