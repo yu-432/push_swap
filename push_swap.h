@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:57:14 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/20 18:27:25 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/20 18:45:43 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ typedef struct s_stack
 	int	min;
 }				t_stack;
 
+//main
+int		add_to_stack(t_stack *a, char *word);
+void	init_stack(t_stack *a, t_stack *b, int size);
+void	read_arg(int argc, char **argv, t_stack *a);
+void	err_exit(void);
+
 //ope
 void	swap_ab(t_stack *stack, char *str);
 void	swap_ss(t_stack *a, t_stack *b);
@@ -35,11 +41,6 @@ void	rotate_rr(t_stack *a, t_stack *b);
 void	reverse_rotate_ab(t_stack *stack, char *str);
 void	reverse_rotate_rrr(t_stack *a, t_stack *b);
 void	updata_minmax(t_stack *from, t_stack *to, int nb);
-
-//main
-int		add_to_stack(t_stack *a, char *word, int j);
-void	init_stack(t_stack *a, t_stack *b, int size);
-void	read_arg(int argc, char **argv, t_stack *a);
 
 //find
 int		find_max(t_stack *stack);
@@ -65,6 +66,6 @@ bool	is_digit_str(char *str);
 int		ps_atoi(const char *str);
 int		count_word(char **argv);
 void	all_free(char **result);
-void	err_exit(void);
+bool	is_unique(t_stack *a);
 
 #endif

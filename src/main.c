@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:35:53 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/20 18:29:48 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/20 18:44:14 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	read_arg(int argc, char **argv, t_stack *a)
 			err_exit();
 		while (nbs[index])
 		{
-			if (add_to_stack(a, nbs[index], a->size) == -1)
+			if (add_to_stack(a, nbs[index]) == -1)
 			{
 				all_free(nbs);
 				err_exit();
@@ -77,16 +77,26 @@ void	read_arg(int argc, char **argv, t_stack *a)
 	}
 }
 
-int	add_to_stack(t_stack *a, char *word, int j)
+
+
+int	add_to_stack(t_stack *a, char *word)
 {
 	if (!is_digit_str(word))
 		return (-1);
-	a->stack[j] = ps_atoi(word);
-	if (a->max < a->stack[j])
-		a->max = a->stack[j];
-	if (a->min > a->stack[j])
-		a->min = a->stack[j];
+	a->stack[a->size] = ps_atoi(word);
+	if (!is_unique(a))
+		return (-1);
+	if (a->max < a->stack[a->size])
+		a->max = a->stack[a->size];
+	if (a->min > a->stack[a->size])
+		a->min = a->stack[a->size];
 	return (0);
+}
+
+void	err_exit(void)
+{
+	ft_putstr_fd("Error\n", 2);
+	exit(1);
 }
 
 // __attribute__((destructor))

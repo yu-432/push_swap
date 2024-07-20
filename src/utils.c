@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 18:33:55 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/20 18:27:17 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/20 18:44:19 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,16 @@ void	all_free(char **result)
 	free(result);
 }
 
-void	err_exit(void)
+bool	is_unique(t_stack *a)
 {
-	ft_putstr_fd("Error\n", 2);
-	exit(1);
+	int	i;
+
+	i = 0;
+	while (i < a->size)
+	{
+		if (a->stack[i] == a->stack[a->size])
+			return (false);
+		i++;
+	}
+	return (true);
 }
