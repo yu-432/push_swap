@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 18:33:55 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/20 17:30:52 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/20 18:13:27 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	ps_atoi(const char *str)
 	while (*str)
 	{
 		value = value * 10 + *str - '0';
-		if ((sign == 1 && value > INT_MAX) || (sign == -1 && value - 1 > INT_MAX))
+		if ((sign == 1 && value > INT_MAX)
+			|| (sign == -1 && value - 1 > INT_MAX))
 		{
 			ft_putstr_fd("Error\n", 2);
 			exit(1);

@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:57:14 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/20 17:41:37 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/20 18:14:05 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-typedef struct	s_stack
-{
-	int *stack;
-	int size;
-	int max;
-	int min;
-}				t_stack;
+# include <stdlib.h>
+# include <limits.h>
+# include <stdbool.h>
+# include "libft/libft.h"
 
-#include <stdlib.h>
-#include <limits.h>
-#include <stdbool.h>
-#include "libft/libft.h"
+typedef struct s_stack
+{
+	int	*stack;
+	int	size;
+	int	max;
+	int	min;
+}				t_stack;
 
 //ope
 void	swap_ab(t_stack *stack, char *str);
@@ -36,11 +36,10 @@ void	reverse_rotate_ab(t_stack *stack, char *str);
 void	reverse_rotate_rrr(t_stack *a, t_stack *b);
 void	updata_minmax(t_stack *from, t_stack *to, int nb);
 
-
 //main
+int		add_to_stack(t_stack *a, char *word, int j);
 void	init_stack(t_stack *a, t_stack *b, int size);
 void	read_arg(int argc, char **argv, t_stack *a);
-int		add_to_stack(t_stack *a, char *word, int j);
 
 //find
 int		find_max(t_stack *stack);
@@ -50,11 +49,11 @@ int		find_lcost_nb(t_stack *a, t_stack *b);
 int		find_pos_b(t_stack *stack_b, int nb);
 
 //sort
+bool	is_sorted(t_stack *stack);
 void	sort_three(t_stack *array);
 void	sort_big(t_stack *a, t_stack *b);
 void	push_a_phase(t_stack *a, t_stack *b);
 void	set_stack(t_stack *a, t_stack *b, int a_nb);
-bool	is_sorted(t_stack *stack);
 
 //set
 void	set_a_head(t_stack *a, int set_nb);
@@ -67,4 +66,4 @@ int		ps_atoi(const char *str);
 int		count_word(char **argv);
 void	all_free(char **result);
 
-# endif
+#endif

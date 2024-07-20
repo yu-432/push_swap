@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:35:53 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/20 17:31:04 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/20 18:12:07 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,7 @@ int	add_to_stack(t_stack *a, char *word, int j)
 	return (0);
 }
 
-
-
-__attribute__((destructor))
-static void destructor() {
-    system("leaks -q push_swap");
-}
+// __attribute__((destructor))
+// static void destructor() {
+//     system("leaks -q push_swap");
+// }
