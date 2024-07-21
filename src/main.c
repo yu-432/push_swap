@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:35:53 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/21 13:08:01 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/21 14:13:10 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int	main(int argc, char **argv)
 		return (0);
 	init_stack(&a, &b, count_word(argv));
 	read_arg(argc, argv, &a);
-	if (a.size < 4)
+	if (is_sorted(&a))
+		return (0);
+	else if (a.size < 4)
 		sort_three(&a);
 	else
 		sort_big(&a, &b);

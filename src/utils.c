@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 18:33:55 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/20 18:44:19 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/21 14:10:36 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ int	ps_atoi(const char *str)
 		value = value * 10 + *str - '0';
 		if ((sign == 1 && value > INT_MAX)
 			|| (sign == -1 && value - 1 > INT_MAX))
-		{
-			ft_putstr_fd("Error\n", 2);
-			exit(1);
-		}
+			err_exit();
 		str++;
 	}
 	return ((int)(value * sign));
