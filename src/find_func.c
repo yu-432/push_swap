@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 13:22:54 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/21 13:04:17 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:44:25 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	find_lcost_nb(t_stack *a, t_stack *b)
 
 	i = 0;
 	min_cost = INT_MAX;
-	while (i < a->size - 1)
+	while (i < a->size)//change from a->size - 1
 	{
 		curr_cost = find_pos_b(b, a->stack[i]);
 		if (i > a->size / 2)
@@ -94,15 +94,13 @@ int	find_pos_b(t_stack *stack_b, int nb)
 	i = 0;
 	while (i < stack_b->size)
 	{
-		if (stack_b->stack[i % stack_b->size] > nb
+		if (stack_b->stack[i] > nb
 			&& stack_b->stack[(i + 1) % stack_b->size] < nb)
-		{
-			if (i > stack_b->size / 2)
-				return (stack_b->size - i);
-			else
-				return (i);
-		}
+			break ;
 		i++;
 	}
-	return (0);
+	if (i > stack_b->size / 2)
+		return (stack_b->size - i);
+	else
+		return (i);
 }
