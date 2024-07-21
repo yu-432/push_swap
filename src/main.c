@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:35:53 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/20 18:44:14 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/21 13:08:01 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ void	read_arg(int argc, char **argv, t_stack *a)
 		i++;
 	}
 }
-
-
 
 int	add_to_stack(t_stack *a, char *word)
 {
