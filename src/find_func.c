@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 13:22:54 by yooshima          #+#    #+#             */
-/*   Updated: 2024/07/21 17:44:25 by yooshima         ###   ########.fr       */
+/*   Updated: 2024/07/21 18:33:21 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,18 @@ int	find_pos_b(t_stack *stack_b, int nb)
 {
 	int	i;
 
-	i = 0;
-	while (i < stack_b->size)
+	if (nb > stack_b->max || nb < stack_b->min)
+		i = find_index(stack_b, stack_b->min);
+	else
 	{
-		if (stack_b->stack[i] > nb
-			&& stack_b->stack[(i + 1) % stack_b->size] < nb)
-			break ;
-		i++;
+		i = 0;
+		while (i < stack_b->size)
+		{
+			if (stack_b->stack[i] > nb
+				&& stack_b->stack[(i + 1) % stack_b->size] < nb)
+				break ;
+			i++;
+		}
 	}
 	if (i > stack_b->size / 2)
 		return (stack_b->size - i);
